@@ -4,7 +4,6 @@ import org.mariadb.jdbc.Statement;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,12 +43,10 @@ public class ProductRepository {
         jdbcTemplate.update("UPDATE products SET stock = stock - ? WHERE id = ?", amount, id);
     }
 
-
     private Product mapRowToProduct(ResultSet row, int rowNum) throws SQLException {
         return new Product(row.getLong("id"),
                 row.getString("product_name"),
                 row.getInt("price"),
                 row.getInt("stock"));
     }
-
 }
